@@ -41,7 +41,65 @@ body {
 
 img { display: block; max-width: 100%; }
 
-/* ── 2. Fondo: aurora + malla en perspectiva + partículas ─────────── */
+/* ── 2b. Fondo: esferas de gradiente a la deriva + barrido de luz ─── */
+
+.esfera-fondo {
+  position: fixed;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(64px);
+  opacity: 0.16;
+  will-change: transform;
+}
+.esf1 {
+  width: 520px; height: 520px;
+  top: -140px; left: -120px;
+  background: radial-gradient(circle, #7c3aed, transparent 70%);
+  animation: deriva1 26s ease-in-out infinite alternate;
+}
+.esf2 {
+  width: 460px; height: 460px;
+  bottom: -160px; right: -120px;
+  background: radial-gradient(circle, #3b82f6, transparent 70%);
+  animation: deriva2 32s ease-in-out infinite alternate;
+}
+.esf3 {
+  width: 380px; height: 380px;
+  top: 42%; left: 58%;
+  background: radial-gradient(circle, #a855f7, transparent 70%);
+  animation: deriva3 22s ease-in-out infinite alternate;
+}
+@keyframes deriva1 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(190px, 130px) scale(1.25); }
+}
+@keyframes deriva2 {
+  from { transform: translate(0, 0) scale(1.1); }
+  to { transform: translate(-230px, -150px) scale(0.9); }
+}
+@keyframes deriva3 {
+  from { transform: translate(0, 0) scale(0.9); }
+  to { transform: translate(-150px, 170px) scale(1.2); }
+}
+
+/* barrido de luz diagonal periódico sobre todo el fondo */
+.barrido-luz {
+  position: fixed;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 44%, rgba(124, 58, 237, 0.10) 49%, rgba(59, 130, 246, 0.12) 53%, transparent 58%);
+  transform: translateX(-130%);
+  animation: barrido 17s ease-in-out infinite;
+}
+@keyframes barrido {
+  0%, 62% { transform: translateX(-130%); }
+  82% { transform: translateX(130%); }
+  100% { transform: translateX(130%); }
+}
+
+/* ── 2c. Fondo: aurora + malla en perspectiva + partículas ────────── */
 
 .aurora {
   position: fixed;
@@ -203,30 +261,21 @@ nav.scrolled {
   0% { opacity: 0.65; transform: scale(0.96); }
   100% { opacity: 1; transform: scale(1.06); }
 }
-.hex3d {
+.prisma {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  animation: girar-hex 16s linear infinite;
+  animation: oscilar-prisma 7s ease-in-out infinite alternate;
+  will-change: transform;
 }
-@keyframes girar-hex {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(360deg); }
-}
-.hex3d .cara {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-.hex3d .cara-2 { transform: rotateY(180deg); }
-.iso {
+.prisma svg {
   width: 100%;
   height: 100%;
   filter: drop-shadow(0 26px 60px rgba(59, 130, 246, 0.45)) drop-shadow(0 8px 26px rgba(124, 58, 237, 0.5));
+}
+@keyframes oscilar-prisma {
+  from { transform: rotateX(4deg) rotateY(-8deg) rotateZ(-2deg) translateY(0); }
+  to { transform: rotateX(14deg) rotateY(-26deg) rotateZ(2deg) translateY(-14px); }
 }
 .orbita {
   position: absolute;
@@ -891,8 +940,8 @@ footer .legal { width: 100%; text-align: center; color: rgba(165, 180, 252, 0.55
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .aurora, .hex3d, .orbita, .orbita::after, .halo, .wordmark .inner, .scroll-pista::after,
-  .card--destacada::before, .grid-fondo, .divisor i { animation: none; }
+  .aurora, .prisma, .orbita, .orbita::after, .halo, .wordmark .inner, .scroll-pista::after,
+  .card--destacada::before, .grid-fondo, .divisor i, .esfera-fondo, .barrido-luz { animation: none; }
   .revelar { opacity: 1; transform: none; transition: none; }
   .tagline, .sub, .hero-ctas, .scroll-pista, .confianza { animation: none; }
   .card, .servicio, .cta, .cta-wa, .cta-ghost, .nav-cta { transform: none !important; }

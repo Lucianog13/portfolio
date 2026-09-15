@@ -44,6 +44,10 @@
   <div class="aurora" aria-hidden="true"></div>
   <div class="grid-fondo" aria-hidden="true"></div>
   <div class="grano" aria-hidden="true"></div>
+  <div class="esfera-fondo esf1" aria-hidden="true"></div>
+  <div class="esfera-fondo esf2" aria-hidden="true"></div>
+  <div class="esfera-fondo esf3" aria-hidden="true"></div>
+  <div class="barrido-luz" aria-hidden="true"></div>
   <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
   <canvas id="particulas" aria-hidden="true"></canvas>
   <div class="progreso" id="progreso" aria-hidden="true"></div>
@@ -84,49 +88,32 @@
         <div class="orbita orbita-1"></div>
         <div class="orbita orbita-2"></div>
         <div class="orbita orbita-3"></div>
-        <div class="hex3d">
-          <div class="cara">
-            <svg class="iso" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="gHex" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#3b82f6"/>
-                  <stop offset=".6" stop-color="#7c3aed"/>
-                  <stop offset="1" stop-color="#a855f7"/>
-                </linearGradient>
-                <linearGradient id="gFlow" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#ffffff"/>
-                  <stop offset="1" stop-color="#c7d2fe"/>
-                </linearGradient>
-              </defs>
-              <path d="M120 34 L194 77 L194 163 L120 206 L46 163 L46 77 Z"
-                    fill="url(#gHex)" stroke="url(#gHex)" stroke-width="16" stroke-linejoin="round"/>
-              <path d="M78 158 C 92 124, 104 96, 120 74"
-                    stroke="url(#gFlow)" stroke-width="12" stroke-linecap="round" fill="none"/>
-              <path d="M162 158 C 148 124, 136 96, 120 74"
-                    stroke="url(#gFlow)" stroke-width="12" stroke-linecap="round" fill="none"/>
-            </svg>
-          </div>
-          <div class="cara cara-2">
-            <svg class="iso" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="gHexB" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#3b82f6"/>
-                  <stop offset=".6" stop-color="#7c3aed"/>
-                  <stop offset="1" stop-color="#a855f7"/>
-                </linearGradient>
-                <linearGradient id="gFlowB" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#ffffff"/>
-                  <stop offset="1" stop-color="#c7d2fe"/>
-                </linearGradient>
-              </defs>
-              <path d="M120 34 L194 77 L194 163 L120 206 L46 163 L46 77 Z"
-                    fill="url(#gHexB)" stroke="url(#gHexB)" stroke-width="16" stroke-linejoin="round"/>
-              <path d="M78 158 C 92 124, 104 96, 120 74"
-                    stroke="url(#gFlowB)" stroke-width="12" stroke-linecap="round" fill="none"/>
-              <path d="M162 158 C 148 124, 136 96, 120 74"
-                    stroke="url(#gFlowB)" stroke-width="12" stroke-linecap="round" fill="none"/>
-            </svg>
-          </div>
+        <div class="prisma">
+          <svg viewBox="0 0 240 286" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gTapa" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#60a5fa"/>
+                <stop offset=".5" stop-color="#7c3aed"/>
+                <stop offset="1" stop-color="#a855f7"/>
+              </linearGradient>
+              <linearGradient id="gLadoA" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#4c1d95"/>
+                <stop offset="1" stop-color="#7c3aed"/>
+              </linearGradient>
+              <linearGradient id="gLadoB" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1e3a8a"/>
+                <stop offset="1" stop-color="#3b82f6"/>
+              </linearGradient>
+            </defs>
+            <!-- caras laterales del prisma (extrusión hacia abajo) -->
+            <polygon points="46,163 120,206 120,278 46,235" fill="url(#gLadoA)" stroke="rgba(238,242,255,0.22)" stroke-width="1.5" stroke-linejoin="round"/>
+            <polygon points="194,163 194,235 120,278 120,206" fill="url(#gLadoB)" stroke="rgba(238,242,255,0.22)" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- cara superior isométrica -->
+            <polygon points="120,34 194,77 194,163 120,206 46,163 46,77" fill="url(#gTapa)" stroke="rgba(238,242,255,0.25)" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- V del logo -->
+            <path d="M78 158 C 92 124, 104 96, 120 74" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+            <path d="M162 158 C 148 124, 136 96, 120 74" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
     </div>
