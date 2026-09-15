@@ -12,7 +12,7 @@ Dominio de producción: **www.verticelabs.com.ar** (DonWeb, hosting compartido, 
 
 | Archivo | Controla |
 |---|---|
-| `index.html` | Estructura + contenido (todas las secciones, copy de venta, meta/SEO/OG/JSON-LD) |
+| `index.html` | Estructura + contenido (todas las secciones, copy de venta, meta/SEO/OG/JSON-LD). Logo del hero: prisma hexagonal isométrico SVG (caras superior/laterales con gradiente) que oscila en 3D |
 | `css/estilos.css` | TODO el diseño: variables de paleta, fondo, nav, hero 3D, secciones, responsive, reduced-motion |
 | `js/main.js` | Nav con blur, scroll reveal 3D, tilt de tarjetas, parallax del logo, partículas canvas |
 | `assets/favicon.svg` | Favicon hexágono (logo) |
