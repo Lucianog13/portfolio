@@ -468,50 +468,6 @@ nav.scrolled {
   font-weight: 700;
 }
 
-.equipo {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.4rem;
-  margin-bottom: 3rem;
-}
-.persona {
-  position: relative;
-  padding: 1.8rem 1.6rem;
-  border-radius: var(--radio);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--borde);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transform-style: preserve-3d;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-.persona:hover {
-  border-color: rgba(168, 85, 247, 0.45);
-  box-shadow: 0 20px 48px rgba(59, 130, 246, 0.16), 0 4px 16px rgba(124, 58, 237, 0.22);
-}
-.persona .hex-avatar {
-  width: 62px; height: 62px;
-  margin-bottom: 1.1rem;
-  transform: translateZ(26px);
-  filter: drop-shadow(0 8px 20px rgba(124, 58, 237, 0.45));
-}
-.persona .p-nombre { font-weight: 700; font-size: 1.1rem; transform: translateZ(20px); }
-.persona .p-rol {
-  color: var(--fucsia);
-  font-weight: 600;
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 0.7rem;
-  transform: translateZ(16px);
-}
-.persona .p-desc {
-  color: var(--texto-suave);
-  font-weight: 300;
-  font-size: 0.92rem;
-  transform: translateZ(12px);
-}
-
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -931,7 +887,7 @@ footer .legal { width: 100%; text-align: center; color: rgba(165, 180, 252, 0.55
   .card--destacada::before, .grid-fondo, .divisor i { animation: none; }
   .revelar { opacity: 1; transform: none; transition: none; }
   .tagline, .sub, .hero-ctas, .scroll-pista, .confianza { animation: none; }
-  .card, .persona, .servicio, .cta, .cta-wa, .cta-ghost, .nav-cta { transform: none !important; }
+  .card, .servicio, .cta, .cta-wa, .cta-ghost, .nav-cta { transform: none !important; }
 }
 
 /* ── 16. Marca VerticeLABS ────────────────────────────────────────── */
