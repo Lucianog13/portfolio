@@ -114,7 +114,64 @@
     });
   }
 
-  /* ── 7. Constelación de partículas ─────────────────────────────── */
+  /* ── 7. Brillo que sigue al cursor (solo mouse fino) ───────────── */
+  if (fino && !reduce) {
+    var glow = document.getElementById("cursor-glow");
+    var gx = 0, gy = 0, px2 = 0, py2 = 0;
+    window.addEventListener("pointermove", function (ev) {
+      gx = ev.clientX; gy = ev.clientY;
+      glow.style.opacity = "1";
+    });
+    (function animarGlow() {
+      px2 += (gx - px2) * 0.09;
+      py2 += (gy - py2) * 0.09;
+      glow.style.transform = "translate(" + px2.toFixed(1) + "px," + py2.toFixed(1) + "px)";
+      requestAnimationFrame(animarGlow);
+    })();
+  }
+
+  /* ── 8. Parallax suave de secciones ─────────────────────────────── */
+  if (!reduce) {
+    var secciones = Array.prototype.slice.call(document.querySelectorAll(".seccion, .contacto, .divisor"));
+    var ultimoScroll = 0;
+    function parallax() {
+      var vh = window.innerHeight;
+      secciones.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -80 || r.top > vh + 80) return;
+        var delta = (r.top + r.height / 2 - vh / 2) * 0.035;
+        el.style.transform = "translateY(" + (-delta).toFixed(1) + "px)";
+      });
+    }
+    window.addEventListener("scroll", function () {
+      if (window.scrollY !== ultimoScroll) {
+        ultimoScroll = window.scrollY;
+        requestAnimationFrame(parallax);
+      }
+    }, { passive: true });
+    parallax();
+  }
+
+  /* ── 9. Palabras del hero con entrada escalonada ────────────────── */
+  var sub = document.querySelector(".sub");
+  if (sub) {
+    if (reduce) {
+      sub.style.opacity = "1";
+    } else {
+      var palabras = sub.textContent.trim().split(/\s+/);
+      sub.innerHTML = "";
+      palabras.forEach(function (w, i) {
+        var s = document.createElement("span");
+        s.className = "palabra";
+        s.textContent = w;
+        s.style.animationDelay = (0.55 + i * 0.05) + "s";
+        sub.appendChild(s);
+        sub.appendChild(document.createTextNode(" "));
+      });
+    }
+  }
+
+  /* ── 10. Constelación de partículas ─────────────────────────────── */
   if (!reduce) {
     var canvas = document.getElementById("particulas");
     var ctx = canvas.getContext("2d");
