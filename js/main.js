@@ -10,11 +10,15 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fino = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  /* ── 1. Nav con blur al scrollear ──────────────────────────────── */
+  /* ── 1. Nav con blur al scrollear + barra de progreso ──────────── */
   var nav = document.getElementById("nav");
+  var progreso = document.getElementById("progreso");
   function alScroll() {
     if (window.scrollY > 24) nav.classList.add("scrolled");
     else nav.classList.remove("scrolled");
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    progreso.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
   }
   window.addEventListener("scroll", alScroll, { passive: true });
   alScroll();
@@ -69,7 +73,48 @@
     })();
   }
 
-  /* ── 4. Constelación de partículas ─────────────────────────────── */
+  /* ── 5. Contadores animados en stats ───────────────────────────── */
+  var contadores = document.querySelectorAll(".contador");
+  function animarContador(el) {
+    var hasta = parseInt(el.getAttribute("data-hasta"), 10);
+    if (reduce) { el.textContent = hasta; return; }
+    var inicio = performance.now();
+    var dur = 1400;
+    function paso(ahora) {
+      var t = Math.min((ahora - inicio) / dur, 1);
+      var suave = 1 - Math.pow(1 - t, 3); // ease-out cúbico
+      el.textContent = Math.round(suave * hasta);
+      if (t < 1) requestAnimationFrame(paso);
+    }
+    requestAnimationFrame(paso);
+  }
+  var obsCont = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+      if (e.isIntersecting) {
+        animarContador(e.target);
+        obsCont.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  contadores.forEach(function (el) { obsCont.observe(el); });
+
+  /* ── 6. Botones magnéticos (solo mouse fino) ───────────────────── */
+  if (fino && !reduce) {
+    document.querySelectorAll(".cta, .cta-wa, .cta-ghost, .nav-cta").forEach(function (b) {
+      b.addEventListener("pointermove", function (ev) {
+        var r = b.getBoundingClientRect();
+        var dx = (ev.clientX - r.left - r.width / 2) * 0.14;
+        var dy = (ev.clientY - r.top - r.height / 2) * 0.22;
+        b.style.transition = "transform 0.15s ease";
+        b.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
+      });
+      b.addEventListener("pointerleave", function () {
+        b.style.transform = "translate(0,0)";
+      });
+    });
+  }
+
+  /* ── 7. Constelación de partículas ─────────────────────────────── */
   if (!reduce) {
     var canvas = document.getElementById("particulas");
     var ctx = canvas.getContext("2d");

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vértice · VerticeLABS — Software y bots de WhatsApp para comercios</title>
+<title>VerticeLABS — Software y bots de WhatsApp para comercios</title>
 <meta name="description" content="Apps de pedidos, bots de WhatsApp 24/7 y catálogos web para comercios argentinos. Hecho en Paraná, en español y funcionando hoy. Escribinos y empezá a vender más.">
 <meta name="theme-color" content="#0a1128">
 <link rel="canonical" href="https://www.verticelabs.com.ar/">
@@ -12,8 +12,8 @@
 <!-- Compartir en redes -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
-<meta property="og:site_name" content="Vértice · VerticeLABS">
-<meta property="og:title" content="Vértice — IA . AUTOMATIZACIÓN . SaaS">
+<meta property="og:site_name" content="VerticeLABS">
+<meta property="og:title" content="VerticeLABS — IA . AUTOMATIZACIÓN . SaaS">
 <meta property="og:description" content="Apps de pedidos, bots de WhatsApp y catálogos web para comercios argentinos. Hecho en Paraná, funcionando hoy.">
 <meta property="og:url" content="https://www.verticelabs.com.ar/">
 <meta property="og:image" content="https://www.verticelabs.com.ar/assets/og-verticelabs.png">
@@ -25,7 +25,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "VerticeLABS",
-  "alternateName": "Vértice",
+  "alternateName": "Vertice",
   "url": "https://www.verticelabs.com.ar",
   "logo": "https://www.verticelabs.com.ar/assets/favicon.svg",
   "description": "Software, inteligencia artificial y automatización para comercios argentinos.",
@@ -48,7 +48,9 @@
 <body>
   <div class="aurora" aria-hidden="true"></div>
   <div class="grid-fondo" aria-hidden="true"></div>
+  <div class="grano" aria-hidden="true"></div>
   <canvas id="particulas" aria-hidden="true"></canvas>
+  <div class="progreso" id="progreso" aria-hidden="true"></div>
 
   <!-- ═══ NAV ═══════════════════════════════════════════════════════ -->
   <nav id="nav">
@@ -66,7 +68,7 @@
         <path d="M78 158 C 92 124, 104 96, 120 74" stroke="#ffffff" stroke-width="12" stroke-linecap="round" fill="none"/>
         <path d="M162 158 C 148 124, 136 96, 120 74" stroke="#ffffff" stroke-width="12" stroke-linecap="round" fill="none"/>
       </svg>
-      Vértice
+      Vertice<span class="marca-labs">LABS</span>
     </a>
     <div class="nav-links">
       <a href="#nosotros">Nosotros</a>
@@ -75,7 +77,7 @@
       <a href="#preguntas">Preguntas</a>
       <a href="#contacto">Contacto</a>
     </div>
-    <a class="nav-cta" href="https://wa.me/543434065289?text=Hola%20V%C3%A9rtice!%20Quiero%20que%20mi%20comercio%20venda%20m%C3%A1s." target="_blank" rel="noopener">Hablemos</a>
+    <a class="nav-cta" href="https://wa.me/543434065289?text=Hola%20VerticeLABS!%20Quiero%20que%20mi%20comercio%20venda%20m%C3%A1s." target="_blank" rel="noopener">Hablemos</a>
   </nav>
 
   <!-- ═══ HERO ══════════════════════════════════════════════════════ -->
@@ -133,11 +135,11 @@
       </div>
     </div>
 
-    <h1 class="wordmark"><span class="inner">Vértice</span></h1>
+    <h1 class="wordmark"><span class="inner">Vertice</span><span class="labs">LABS</span></h1>
     <div class="tagline">IA . AUTOMATIZACIÓN . SaaS</div>
     <p class="sub">Construimos la tecnología que hace que tu comercio <strong>venda más</strong>: apps de pedidos, bots de WhatsApp que atienden 24/7 y catálogos web. Todo en español, hecho en Paraná y funcionando hoy.</p>
     <div class="hero-ctas">
-      <a class="cta cta-wa" href="https://wa.me/543434065289?text=Hola%20V%C3%A9rtice!%20Quiero%20que%20mi%20comercio%20venda%20m%C3%A1s." target="_blank" rel="noopener">Hablemos por WhatsApp</a>
+      <a class="cta cta-wa" href="https://wa.me/543434065289?text=Hola%20VerticeLABS!%20Quiero%20que%20mi%20comercio%20venda%20m%C3%A1s." target="_blank" rel="noopener">Hablemos por WhatsApp</a>
       <a class="cta-ghost" href="#productos">Ver productos</a>
     </div>
     <div class="confianza" aria-hidden="true">
@@ -148,9 +150,25 @@
     <div class="scroll-pista" aria-hidden="true"></div>
   </header>
 
+  <!-- ═══ TICKER ════════════════════════════════════════════════════ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-pista">
+      <span>Apps de pedidos</span><i>✦</i>
+      <span>Bots de WhatsApp 24/7</span><i>✦</i>
+      <span>Catálogos web</span><i>✦</i>
+      <span>Automatización e IA</span><i>✦</i>
+      <span>Hecho en Paraná</span><i>✦</i>
+      <span>Apps de pedidos</span><i>✦</i>
+      <span>Bots de WhatsApp 24/7</span><i>✦</i>
+      <span>Catálogos web</span><i>✦</i>
+      <span>Automatización e IA</span><i>✦</i>
+      <span>Hecho en Paraná</span><i>✦</i>
+    </div>
+  </div>
+
   <!-- ═══ NOSOTROS ══════════════════════════════════════════════════ -->
   <section class="seccion" id="nosotros">
-    <h2 class="seccion-titulo revelar">Conocé <span class="acc">Vértice</span></h2>
+    <h2 class="seccion-titulo revelar">Conocé <span class="acc">VerticeLABS</span></h2>
     <p class="seccion-sub revelar">Una startup de Paraná que construye tecnología para comercios argentinos.</p>
     <p class="nosotros-manifiesto revelar">
       Los comercios pierden ventas todos los días porque atender más y mejor sale caro o es complicado.
@@ -201,9 +219,9 @@
     </div>
 
     <div class="stats revelar">
-      <div class="stat"><div class="num">6</div><div class="lbl">productos en producción</div></div>
-      <div class="stat"><div class="num">24/7</div><div class="lbl">atención que no duerme</div></div>
-      <div class="stat"><div class="num">100%</div><div class="lbl">en español, hecho acá</div></div>
+      <div class="stat"><div class="num"><span class="contador" data-hasta="6">0</span></div><div class="lbl">productos en producción</div></div>
+      <div class="stat"><div class="num"><span class="contador" data-hasta="24">0</span>/7</div><div class="lbl">atención que no duerme</div></div>
+      <div class="stat"><div class="num"><span class="contador" data-hasta="100">0</span>%</div><div class="lbl">en español, hecho acá</div></div>
       <div class="stat"><div class="num">Paraná</div><div class="lbl">Entre Ríos · Argentina</div></div>
     </div>
   </section>
@@ -219,28 +237,28 @@
         <span class="icono" aria-hidden="true">🛒</span>
         <h3>App de pedidos a medida</h3>
         <p>Tu catálogo completo con carrito y pedido directo por WhatsApp o remito. Tus clientes compran sin llamar, a cualquier hora.</p>
-        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20V%C3%A9rtice!%20Quiero%20una%20app%20de%20pedidos%20para%20mi%20negocio." target="_blank" rel="noopener">La quiero para mi negocio <span class="arr">→</span></a>
+        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20VerticeLABS!%20Quiero%20una%20app%20de%20pedidos%20para%20mi%20negocio." target="_blank" rel="noopener">La quiero para mi negocio <span class="arr">→</span></a>
       </article>
 
       <article class="servicio revelar">
         <span class="icono" aria-hidden="true">🤖</span>
         <h3>Bot de WhatsApp 24/7</h3>
         <p>Atiende turnos y pedidos aunque no mires el celular. Respuesta al instante y cero clientes perdidos por no contestar.</p>
-        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20V%C3%A9rtice!%20Quiero%20un%20bot%20de%20WhatsApp%20para%20atender%20mejor." target="_blank" rel="noopener">Quiero atender sin parar <span class="arr">→</span></a>
+        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20VerticeLABS!%20Quiero%20un%20bot%20de%20WhatsApp%20para%20atender%20mejor." target="_blank" rel="noopener">Quiero atender sin parar <span class="arr">→</span></a>
       </article>
 
       <article class="servicio revelar">
         <span class="icono" aria-hidden="true">🛍️</span>
         <h3>Catálogo web</h3>
         <p>Tu vidriera online con fotos, precios y botón de WhatsApp. Se comparte con un link y no depende de algoritmos de redes.</p>
-        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20V%C3%A9rtice!%20Quiero%20un%20cat%C3%A1logo%20web%20para%20mi%20negocio." target="_blank" rel="noopener">Quiero mi catálogo <span class="arr">→</span></a>
+        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20VerticeLABS!%20Quiero%20un%20cat%C3%A1logo%20web%20para%20mi%20negocio." target="_blank" rel="noopener">Quiero mi catálogo <span class="arr">→</span></a>
       </article>
 
       <article class="servicio revelar">
         <span class="icono" aria-hidden="true">⚡</span>
         <h3>Automatización e IA</h3>
         <p>Bots que venden, cobran y avisan solos. IA aplicada a todo lo que tu negocio hace a mano todos los días.</p>
-        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20V%C3%A9rtice!%20Quiero%20automatizar%20mi%20negocio%20con%20IA." target="_blank" rel="noopener">Quiero automatizar <span class="arr">→</span></a>
+        <a class="pedir" href="https://wa.me/543434065289?text=Hola%20VerticeLABS!%20Quiero%20automatizar%20mi%20negocio%20con%20IA." target="_blank" rel="noopener">Quiero automatizar <span class="arr">→</span></a>
       </article>
     </div>
   </section>
@@ -375,7 +393,7 @@
     <h2>¿Hablamos de <span class="acc">tu negocio</span>?</h2>
     <p>Contanos qué hacés y te decimos, con honestidad, qué tecnología te sirve. Sin compromiso y sin letra chica.</p>
     <div class="contacto-acciones">
-      <a class="cta cta-wa" href="https://wa.me/543434065289?text=Hola%20V%C3%A9rtice!%20Quiero%20hablar%20de%20mi%20negocio." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+      <a class="cta cta-wa" href="https://wa.me/543434065289?text=Hola%20VerticeLABS!%20Quiero%20hablar%20de%20mi%20negocio." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
       <a class="cta-ghost" href="mailto:info@verticelabs.com.ar">info@verticelabs.com.ar</a>
     </div>
     <div class="contacto-datos">
@@ -393,7 +411,7 @@
         <path d="M78 158 C 92 124, 104 96, 120 74" stroke="#fff" stroke-width="12" stroke-linecap="round" fill="none"/>
         <path d="M162 158 C 148 124, 136 96, 120 74" stroke="#fff" stroke-width="12" stroke-linecap="round" fill="none"/>
       </svg>
-      Vértice
+      Vertice<span class="marca-labs">LABS</span>
     </span>
     <span>IA . AUTOMATIZACIÓN . SaaS</span>
     <nav class="enlaces" aria-label="Enlaces del pie">

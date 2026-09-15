@@ -24,9 +24,28 @@ def click_por_texto(ws, sid, texto, exacto=False):
 
 
 def main():
-    ws = WS(timeout=15)
+    ws = None
+    for intento in range(8):
+        try:
+            ws = WS(timeout=15)
+            break
+        except Exception as e:
+            print("WS intento", intento + 1, "falló:", type(e).__name__)
+            time.sleep(12)
+    if ws is None:
+        raise SystemExit("No se pudo conectar al Chrome por CDP")
     tab = find_page(ws, "ferozo.host")
+    if not tab:
+        # headless no restaura pestañas: crear una y navegar (la sesión
+        # está en las cookies del perfil)
+        nuevo = ws.call("Target.createTarget", {"url": "https://ferozo.host/"})
+        tid = nuevo["targetId"]
+        time.sleep(8)
+        tab = {"targetId": tid}
     sid = attach(ws, tab["targetId"])
+    # asegurar que esté en la página de subida
+    evaluate(ws, sid, "location.hash = '#/website/uploadsite'")
+    time.sleep(5)
 
     # 1) adjuntar el zip al input file (sin abrir diálogo nativo)
     ws.call("DOM.enable", session_id=sid)
