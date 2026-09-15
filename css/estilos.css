@@ -235,93 +235,84 @@ nav.scrolled {
   padding: 6rem 1.5rem 4rem;
 }
 
-/* escena 3D del logo */
-.escena {
-  width: clamp(220px, 30vw, 310px);
-  height: clamp(220px, 30vw, 310px);
-  perspective: 900px;
+/* logo isométrico 3D estilo SVGator: prisma hexagonal giratorio */
+.logo-iso {
+  width: 88px; height: 88px;
   position: relative;
+  perspective: 600px;
+  animation: flotar-logo 4.5s ease-in-out infinite alternate;
 }
-.plataforma {
+@keyframes flotar-logo {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+.logo-iso .inclinar {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
-  will-change: transform;
+  transform: rotateX(-24deg);
 }
-.halo {
-  position: absolute;
-  inset: -12%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.35), rgba(59, 130, 246, 0.12) 45%, transparent 70%);
-  filter: blur(10px);
-  animation: halo-pulso 4.5s ease-in-out infinite alternate;
-}
-@keyframes halo-pulso {
-  0% { opacity: 0.65; transform: scale(0.96); }
-  100% { opacity: 1; transform: scale(1.06); }
-}
-.prisma {
+.logo-iso .giro {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  animation: oscilar-prisma 7s ease-in-out infinite alternate;
-  will-change: transform;
+  animation: girar-iso 11s linear infinite;
 }
-.prisma svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 26px 60px rgba(59, 130, 246, 0.45)) drop-shadow(0 8px 26px rgba(124, 58, 237, 0.5));
+@keyframes girar-iso {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
-@keyframes oscilar-prisma {
-  from { transform: rotateX(4deg) rotateY(-8deg) rotateZ(-2deg) translateY(0); }
-  to { transform: rotateX(14deg) rotateY(-26deg) rotateZ(2deg) translateY(-14px); }
-}
-.orbita {
+/* caras laterales del prisma (6, en gradientes de marca) */
+.logo-iso .lado {
   position: absolute;
   left: 50%; top: 50%;
-  border-radius: 50%;
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  transform-style: preserve-3d;
+  width: 44px; height: 26px;
+  margin: -13px 0 0 -22px;
+  transform: rotateY(var(--ry)) translateZ(38.1px);
+  background: var(--cara);
 }
-.orbita::after {
+.l0 { --ry: 0deg;   --cara: linear-gradient(180deg, #60a5fa, #2563eb); }
+.l1 { --ry: 60deg;  --cara: linear-gradient(180deg, #7c3aed, #5b21b6); }
+.l2 { --ry: 120deg; --cara: linear-gradient(180deg, #a855f7, #7e22ce); }
+.l3 { --ry: 180deg; --cara: linear-gradient(180deg, #60a5fa, #1e40af); }
+.l4 { --ry: 240deg; --cara: linear-gradient(180deg, #7c3aed, #4c1d95); }
+.l5 { --ry: 300deg; --cara: linear-gradient(180deg, #a855f7, #6b21a8); }
+/* tapas superior e inferior del prisma */
+.logo-iso .tapa-sup,
+.logo-iso .tapa-inf {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 76.2px; height: 88px;
+  margin: -44px 0 0 -38.1px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+.logo-iso .tapa-sup {
+  background: linear-gradient(135deg, #3b82f6, #7c3aed 55%, #a855f7);
+  transform: rotateX(90deg) translateZ(13px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-iso .tapa-sup svg { width: 62%; height: 62%; }
+.logo-iso .tapa-inf {
+  background: #312e81;
+  transform: rotateX(90deg) translateZ(-13px);
+}
+/* sombra proyectada debajo del prisma */
+.logo-iso::after {
   content: "";
   position: absolute;
-  top: -4px; left: 50%;
-  width: 9px; height: 9px;
-  margin-left: -4.5px;
+  left: 50%; bottom: -20px;
+  width: 92px; height: 16px;
+  margin-left: -46px;
   border-radius: 50%;
-  background: var(--fucsia);
-  box-shadow: 0 0 16px 3px rgba(168, 85, 247, 0.8);
+  background: radial-gradient(ellipse, rgba(124, 58, 237, 0.5), transparent 70%);
+  filter: blur(6px);
+  animation: sombra-logo 4.5s ease-in-out infinite alternate;
 }
-.orbita-1 {
-  width: 128%; height: 128%;
-  margin: -64% 0 0 -64%;
-  animation: orbita-1 9s linear infinite;
-}
-.orbita-1::after { background: var(--azul-brillo); box-shadow: 0 0 16px 3px rgba(96, 165, 250, 0.9); }
-.orbita-2 {
-  width: 152%; height: 152%;
-  margin: -76% 0 0 -76%;
-  animation: orbita-2 15s linear infinite reverse;
-}
-.orbita-2::after { background: var(--cian); box-shadow: 0 0 14px 3px rgba(34, 211, 238, 0.9); }
-.orbita-3 {
-  width: 112%; height: 112%;
-  margin: -56% 0 0 -56%;
-  animation: orbita-3 12s linear infinite;
-}
-@keyframes orbita-1 {
-  from { transform: rotateX(74deg) rotateZ(0deg); }
-  to { transform: rotateX(74deg) rotateZ(360deg); }
-}
-@keyframes orbita-2 {
-  from { transform: rotateX(70deg) rotateY(14deg) rotateZ(0deg); }
-  to { transform: rotateX(70deg) rotateY(14deg) rotateZ(360deg); }
-}
-@keyframes orbita-3 {
-  from { transform: rotateX(78deg) rotateZ(0deg); }
-  to { transform: rotateX(78deg) rotateZ(-360deg); }
+@keyframes sombra-logo {
+  from { transform: scaleX(1); opacity: 0.85; }
+  to { transform: scaleX(0.78); opacity: 0.45; }
 }
 
 .wordmark {
@@ -940,7 +931,7 @@ footer .legal { width: 100%; text-align: center; color: rgba(165, 180, 252, 0.55
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .aurora, .prisma, .orbita, .orbita::after, .halo, .wordmark .inner, .scroll-pista::after,
+  .aurora, .logo-iso, .logo-iso .giro, .logo-iso::after, .wordmark .inner, .scroll-pista::after,
   .card--destacada::before, .grid-fondo, .divisor i, .esfera-fondo, .barrido-luz { animation: none; }
   .revelar { opacity: 1; transform: none; transition: none; }
   .tagline, .sub, .hero-ctas, .scroll-pista, .confianza { animation: none; }

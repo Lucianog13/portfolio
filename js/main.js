@@ -55,22 +55,7 @@
       });
     });
 
-    var plataforma = document.getElementById("plataforma");
-    var hero = document.querySelector(".hero");
-    var tx = 0, ty = 0, cx = 0, cy = 0;
-    hero.addEventListener("pointermove", function (ev) {
-      var r = hero.getBoundingClientRect();
-      tx = ((ev.clientX - r.left) / r.width - 0.5) * 22;
-      ty = ((ev.clientY - r.top) / r.height - 0.5) * -18;
-    });
-    (function animarParallax() {
-      cx += (tx - cx) * 0.08;
-      cy += (ty - cy) * 0.08;
-      if (Math.abs(cx) > 0.02 || Math.abs(cy) > 0.02) {
-        plataforma.style.transform = "rotateX(" + cy.toFixed(2) + "deg) rotateY(" + cx.toFixed(2) + "deg)";
-      }
-      requestAnimationFrame(animarParallax);
-    })();
+    /* el logo isométrico chico se anima solo por CSS */
   }
 
   /* ── 5. Contadores animados en stats ───────────────────────────── */
