@@ -42,31 +42,31 @@ Dominio de producción: **www.verticelabs.com.ar** (DonWeb, hosting compartido, 
 - [x] Bloque 6: contacto real + FAQ
 - [x] Bloque 7: SEO/OG/favicon/canonical/JSON-LD + og-verticelabs.png
 - [x] DEPLOY A DONWEB HECHO (15-09-2026): www.verticelabs.com.ar online,
-      SSL Let's Encrypt activo, .htaccess fuerza https+www (verificado 301→200)
+      SSL Let's Encrypt activo, .htaccess fuerza https+www (verificado 301→200).
+      FTP operativo vía .env + deploy.py. Rebrand VerticeLABS + efectos premium
+      desplegados y verificados (ticker/contadores/wordmark nuevo).
 - [ ] Optimizar peso de imágenes (super.png 710 KB, vitrina.png 608 KB → uv + Pillow)
 - [ ] Auditoría responsive (skill auditoria-responsive-web)
 - [ ] Confirmar con Lucho: número de WhatsApp en CTAs, clientes visibles en público,
       apellidos en JSON-LD, qué hacer con el WordPress instalado en public_html
 
-## Deploy a DonWeb (cómo se usa — CAMINO PROBADO)
-
-FTP directo (deploy.py) NO funcionó al inicio: la contraseña FTP es distinta a la
-del panel Ferozo (530 Login incorrect). El camino que SÍ funciona es el panel:
+## Deploy a DonWeb (cómo se usa — FTP ACTIVO)
 
 ```bash
-python hacer_zip.py            # arma sitio.zip con los archivos del sitio
-python fer_subir.py            # entra por CDP al panel Ferozo (Chrome del usuario
-                               # ya logueado) → Mi Sitio Web → Subir mi sitio →
-                               # adjunta el zip → extrae en public_html
+python deploy.py   # lee .env (gitignored): DONWEB_HOST/USER/PASS, sube por FTPS
 ```
-- fer_subir.py necesita el Chrome del usuario corriendo con CDP 9222 y la pestaña
-  de ferozo.host logueada (usuario a0190762). Reusa wa_cdp.py (skill whatsapp-web-cdp).
-- fer_shots.py captura screenshots por CDP (para tarjetas/og) con Emulation.setDeviceMetricsOverride.
-- deploy.py (FTPS) queda listo por si algún día se consigue la contraseña FTP real
-  (en el panel: Mi Sitio Web → FTP → Cambiar Contraseña).
-- El panel Ferozo también tiene GIT (#/website/git) y Administrador de archivos,
-  alternativas válidas si el zip fallara.
+- FTP verificadado 15-09-2026: host a0190762.ferozo.com, usuario ftp@a0190762.ferozo.com,
+  contraseña en .env local (NO commitear). FTPS explícito puerto 21 (FTP_TLS + prot_p).
+- Ojo: varios intentos fallidos de login → el servidor devuelve timeouts (bloqueo
+  temporal). No insistir.
+- Alternativa si FTP falla: panel Ferozo → Mi Sitio Web → Subir mi sitio (ZIP,
+  lo arma hacer_zip.py). El login del panel solo pasa en navegador visible de
+  Lucho (Turnstile); Chrome headless no sirve para eso.
+- fer_shots.py captura screenshots por CDP (headless=new, que es lo único que
+  bindea el puerto de debug desde Chrome 153).
 - SSL: ya emitido por Let's Encrypt (*.verticelabs.com.ar). No tocar salvo renovación.
+- En public_html quedó un WordPress preinstalado + sitio.zip viejo + archivos
+  captura-*.png legacy. Nuestro index.html tiene prioridad (verificado).
 
 ## Cambios pendientes / notas
 

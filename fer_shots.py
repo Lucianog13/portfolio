@@ -13,9 +13,6 @@ SALIDA = r"C:\Users\Luchi$\Desktop\portfolio\assets"
 OBJETIVOS = [
     # (url, archivo, ancho, alto)  — og 1200x630, tarjetas 1280x800
     ("https://www.verticelabs.com.ar/", "og-verticelabs.png", 1200, 630),
-    ("https://lucianog13.github.io/simpleat/", "simpleat.png", 1280, 800),
-    ("https://lucianog13.github.io/abastece-demo/", "abastece.png", 1280, 800),
-    ("https://lucianog13.github.io/bot-cash/", "bot-cash.png", 1280, 800),
 ]
 
 

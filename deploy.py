@@ -20,6 +20,15 @@ import os
 import sys
 from pathlib import Path
 
+# Cargar credenciales de .env local si existe (nunca se commitea)
+_ENV = Path(__file__).resolve().parent / ".env"
+if _ENV.exists():
+    for _linea in _ENV.read_text(encoding="utf-8").splitlines():
+        _linea = _linea.strip()
+        if _linea and not _linea.startswith("#") and "=" in _linea:
+            _k, _v = _linea.split("=", 1)
+            os.environ.setdefault(_k.strip(), _v.strip())
+
 # Archivos y carpetas que componen el sitio (raíz del repo).
 ARCHIVOS_SUELTOS = ["index.html"]
 CARPETAS = ["css", "js", "assets"]
