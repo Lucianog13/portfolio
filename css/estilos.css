@@ -468,6 +468,76 @@ nav.scrolled {
   font-weight: 700;
 }
 
+/* ── ¿Para quién es? (segmentos de público) ───────────────────────── */
+
+.audiencia {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  margin-bottom: 2.6rem;
+}
+.segmento {
+  position: relative;
+  padding: 1.8rem 1.6rem 1.5rem;
+  border-radius: var(--radio);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--borde);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  overflow: hidden;
+}
+.segmento::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, -20%), rgba(168, 85, 247, 0.12), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.segmento:hover {
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 20px 48px rgba(59, 130, 246, 0.16), 0 4px 16px rgba(124, 58, 237, 0.22);
+  transform: translateY(-3px);
+}
+.segmento:hover::after { opacity: 1; }
+
+/* icono hexágono con gradiente de marca */
+.hex-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px; height: 58px;
+  margin-bottom: 1.1rem;
+  font-size: 1.55rem;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  filter: drop-shadow(0 8px 20px rgba(124, 58, 237, 0.4));
+  transition: transform 0.3s ease;
+}
+.segmento:hover .hex-ico { transform: translateY(-3px) rotate(-4deg) scale(1.05); }
+.hex-azul { background: linear-gradient(135deg, #3b82f6, #7c3aed); }
+.hex-violeta { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+.hex-fucsia { background: linear-gradient(135deg, #a855f7, #3b82f6); }
+.hex-cian { background: linear-gradient(135deg, #22d3ee, #7c3aed); }
+
+.segmento h3 { font-size: 1.08rem; margin-bottom: 0.5rem; }
+.segmento p { color: var(--texto-suave); font-weight: 300; font-size: 0.9rem; }
+
+.audiencia-cierre {
+  text-align: center;
+  color: var(--texto-suave);
+  font-weight: 300;
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+}
+.audiencia-cierre a {
+  color: var(--fucsia);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);
+  transition: border-color 0.2s, color 0.2s;
+}
+.audiencia-cierre a:hover { color: #fff; border-color: #fff; }
+
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
