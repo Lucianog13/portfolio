@@ -36,29 +36,43 @@ Dominio de producción: **www.verticelabs.com.ar** (DonWeb, hosting compartido, 
 - [x] Bloque 1: estructura modular (CSS/JS separados, viejo CSS eliminado)
 - [x] Bloque 2: hero de venta (CTA WhatsApp primario, línea de confianza)
 - [x] Bloque 3: servicios (4, con links wa.me prellenados)
-- [x] Bloque 4: tarjetas de productos con capturas (3 con foto real, 3 con emoji — capturar faltantes)
+- [x] Bloque 4: tarjetas de productos con capturas reales (las 6: super/atende/vitrina +
+      simpleat/abastece/bot-cash capturadas por CDP)
 - [x] Bloque 5: proceso + clientes reales
 - [x] Bloque 6: contacto real + FAQ
-- [x] Bloque 7: SEO/OG/favicon/canonical/JSON-LD
-- [ ] Capturas faltantes: simpleat, abastece-demo, bot-cash (tarjetas) + og-verticelabs.png
+- [x] Bloque 7: SEO/OG/favicon/canonical/JSON-LD + og-verticelabs.png
+- [x] DEPLOY A DONWEB HECHO (15-09-2026): www.verticelabs.com.ar online,
+      SSL Let's Encrypt activo, .htaccess fuerza https+www (verificado 301→200)
 - [ ] Optimizar peso de imágenes (super.png 710 KB, vitrina.png 608 KB → uv + Pillow)
 - [ ] Auditoría responsive (skill auditoria-responsive-web)
-- [ ] Deploy a DonWeb: falta usuario/contraseña de Ferozo o FTP (pedir a Lucho)
-- [ ] En panel Ferozo: SSL gratis + "Forzar https" + redirección root→www
+- [ ] Confirmar con Lucho: número de WhatsApp en CTAs, clientes visibles en público,
+      apellidos en JSON-LD, qué hacer con el WordPress instalado en public_html
 
-## Deploy a DonWeb (cómo se usa)
+## Deploy a DonWeb (cómo se usa — CAMINO PROBADO)
+
+FTP directo (deploy.py) NO funcionó al inicio: la contraseña FTP es distinta a la
+del panel Ferozo (530 Login incorrect). El camino que SÍ funciona es el panel:
 
 ```bash
-export DONWEB_HOST=... DONWEB_USER=... DONWEB_PASS=...
-python deploy.py
+python hacer_zip.py            # arma sitio.zip con los archivos del sitio
+python fer_subir.py            # entra por CDP al panel Ferozo (Chrome del usuario
+                               # ya logueado) → Mi Sitio Web → Subir mi sitio →
+                               # adjunta el zip → extrae en public_html
 ```
-Sube index.html + css/ + js/ + assets/ a `public_html` por FTPS (puerto 21, TLS explícito,
-que es lo que exige DonWeb; sin SSH). El hosting NO usa ramas ni build: el sitio es estático.
-Después de la primera subida: activar SSL en Ferozo → Dominios → Forzar https.
+- fer_subir.py necesita el Chrome del usuario corriendo con CDP 9222 y la pestaña
+  de ferozo.host logueada (usuario a0190762). Reusa wa_cdp.py (skill whatsapp-web-cdp).
+- fer_shots.py captura screenshots por CDP (para tarjetas/og) con Emulation.setDeviceMetricsOverride.
+- deploy.py (FTPS) queda listo por si algún día se consigue la contraseña FTP real
+  (en el panel: Mi Sitio Web → FTP → Cambiar Contraseña).
+- El panel Ferozo también tiene GIT (#/website/git) y Administrador de archivos,
+  alternativas válidas si el zip fallara.
+- SSL: ya emitido por Let's Encrypt (*.verticelabs.com.ar). No tocar salvo renovación.
 
 ## Cambios pendientes / notas
 
 - El JSON-LD declara fundadores "Luciano González / Martín González / Tomás" — confirmar apellidos con Lucho.
-- DonWeb NO da SSH/SFTP en hosting compartido: solo FTP/FTPS puerto 21. Para cambiar algo del
-  sitio: editar local → `python deploy.py` (o push a GitHub para el preview).
-- No borrar `assets/captura-*.png` hasta decidir si se usan para og-image o se descartan.
+- En public_html quedó un WordPress instalado (venía con el hosting) + archivos captura-*.png
+  legacy. No rompen nada (nuestro index.html tiene prioridad), pero conviene borrarlos
+  cuando Lucho confirme que no los necesita.
+- Cuenta de correo existente: marcelogonzalez@verticelabs.com.ar. Falta crear info@
+  (panel → Email → Cuentas) cuando Lucho lo pida.
