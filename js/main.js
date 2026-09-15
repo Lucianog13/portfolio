@@ -113,14 +113,8 @@
       });
     });
 
-    /* foco de luz que sigue al mouse en los segmentos de audiencia */
-    document.querySelectorAll(".segmento").forEach(function (seg) {
-      seg.addEventListener("pointermove", function (ev) {
-        var r = seg.getBoundingClientRect();
-        seg.style.setProperty("--mx", ((ev.clientX - r.left) / r.width * 100).toFixed(1) + "%");
-        seg.style.setProperty("--my", ((ev.clientY - r.top) / r.height * 100).toFixed(1) + "%");
-      });
-    });
+    /* foco de luz que sigue al mouse en los segmentos: lo maneja el
+       tilt de .card3d (clase aplicada a .segmento) */
   }
 
   /* ── 7. Brillo que sigue al cursor (solo mouse fino) ───────────── */
