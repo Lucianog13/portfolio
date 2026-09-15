@@ -1,0 +1,5 @@
+# Credenciales y archivos locales que jamás se suben al repo
+.env
+creds*.json
+*.log
+__pycache__/
